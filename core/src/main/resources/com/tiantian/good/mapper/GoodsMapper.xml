@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiantian.good.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.tiantian.good.dto.Goods">
+        <result column="gid" property="gid" jdbcType="DECIMAL"/>
+        <result column="pname" property="pname" jdbcType="VARCHAR"/>
+        <result column="oldprice" property="oldprice" jdbcType="DECIMAL"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="local" property="local" jdbcType="VARCHAR"/>
+        <result column="jianjie" property="jianjie" jdbcType="VARCHAR"/>
+        <result column="img" property="img" jdbcType="VARCHAR"/>
+        <result column="tid" property="tid" jdbcType="VARCHAR"/>
+        <result column="img2" property="img2" jdbcType="VARCHAR"/>
+        <result column="img3" property="img3" jdbcType="VARCHAR"/>
+        <result column="img4" property="img4" jdbcType="VARCHAR"/>
+        <result column="img5" property="img5" jdbcType="VARCHAR"/>
+        <result column="kucun" property="kucun" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <select id="selectByLike" resultMap="BaseResultMap" parameterType="com.tiantian.good.dto.Goods">
+        SELECT
+        gid,
+        pname,
+        oldprice,
+        price,
+        LOCAL,
+        jianjie,
+        img,
+        tid,
+        kucun
+        FROM
+        goods
+        <where>
+            1=1
+            <if test="pname!=null">
+                and pname like concat('%',#{pname},'%')
+            </if>
+            <if test="tid!=null">
+                and tid like concat('%',#{tid},'%')
+            </if>
+            <if test="min_price!=null || max_price!=null">
+                and price between #{min_price} and #{max_price}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
