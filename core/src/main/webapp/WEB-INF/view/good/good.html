@@ -16,7 +16,7 @@
                data-bind="value:model.pname" class="k-textbox">
         <input type="number" data-role="maskedtextbox" style="width:80px;"
                placeholder='最低价格'
-               data-bind="value:model.min_price" class="k-textbox">-
+               data-bind="value:model.min_price" class="k-textbox"> —
         <input type="number" data-role="maskedtextbox" style="width:80px;margin-right:5px;"
                placeholder='最高价格'
                data-bind="value:model.max_price" class="k-textbox">
@@ -130,7 +130,6 @@
                 title: '<@spring.message "图片"/>',
                 width: 80,
                 template: function (dataItem) {
-                    debugger
                     return '<img src=" ' + dataItem.img + '" width="80px" height="80px"/>'
                 }
 
